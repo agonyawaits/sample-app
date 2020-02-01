@@ -2,8 +2,6 @@
 
 This is sample application developed following Ruby on Rails Tutorial by Michael Hartl.
 
-## License
-
 ## Getting started
 
 To get started with the app, clone the repo and then install the needed gems:
