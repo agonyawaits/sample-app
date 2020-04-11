@@ -39,3 +39,4 @@ yarn-debug.log*
 db/test.*
 
 .env
+.idea/
