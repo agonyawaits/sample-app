@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def show
     render 'new'
   end
@@ -23,5 +22,4 @@ class SessionsController < ApplicationController
     log_out
     redirect_to root_url
   end
-
 end
