@@ -7,9 +7,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
   
   test "login with valid information followed by logout" do
-    get login_path
     # When
-    post_login_path(@user.email, "password")
+    post_login_path(@user.email)
     # Then
     assert is_logged_in?
     assert_redirected_to @user
@@ -27,9 +26,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with valid email / invalid password" do
-    get login_path
     # When
-    post_login_path(@user.email, "invalid")
+    post_login_path(@user.email, password: "invalid")
     # Then
     assert_template 'sessions/new'
     assert_not flash.empty?
@@ -38,9 +36,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with invalid information" do
-    get login_path
     # When
-    post_login_path("invalid@example.com", "password")
+    post_login_path("invalid@example.com")
     # Then
     assert_template 'sessions/new'
     assert_not flash.empty?
@@ -48,16 +45,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  private
+  test "login with/without remembering" do
+    # When
+    post_login_path(@user.email, remember_me: '1')
+    # Then
+    assert_not_empty cookies[:remember_token]
 
-  def post_login_path(email, password)
-    post login_path, params: {
-      session: {
-        email: email,
-        password: password
-      }
-    }
+    # When
+    post_login_path(@user.email, remember_me: '0')
+    # Then
+    assert_empty cookies[:remember_token]
   end
-  
 
 end
