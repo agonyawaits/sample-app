@@ -33,4 +33,3 @@ group :test do
   gem 'guard', '~> 2.16', '>= 2.16.1'
   gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
 end
-
