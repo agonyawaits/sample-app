@@ -1,7 +1,4 @@
-# Ruby in Rails Tutorial sample application
-
-This is sample application developed following Ruby on Rails Tutorial by Michael Hartl.
-
+![CI](https://github.com/agonyawaits/sample-app/workflows/CI/badge.svg)
 ## Getting started
 
 To get started with the app, clone the repo and then install the needed gems:
