@@ -17,7 +17,6 @@ class ActiveSupport::TestCase
     !session[:user_id].nil?
   end
 
-
   def post_login_path(email, password: "password", remember_me: '1')
     post login_path, params: {
         session: {
@@ -27,4 +26,5 @@ class ActiveSupport::TestCase
         }
     }
   end
+
 end

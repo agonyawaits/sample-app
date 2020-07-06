@@ -5,24 +5,43 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
     @admin = users(:alice)
     @non_admin = users(:bob)
+    @unactivated_user = users(:unactivated_user)
   end
 
-  test "index as admin including pagination and delete links" do
+  test "index as admin has delete links and has no unactivated users" do
     post_login_path(@admin.email)
     get users_path
     assert_template 'users/index'
     assert_select 'div.pagination'
 
-    first_page_of_users = User.paginate(page: 1)
-    first_page_of_users.each do |user|
-      assert_select 'a[href=?]', user_path(user), text: user.name
-      unless user == @admin
-        assert_select 'a[href=?]', user_path(user), text: 'Delete'
+    User.paginate(page: 1).each do |user|
+      if user.activated?
+        assert_select 'a[href=?]', user_path(user), text: user.name
+        unless user == @admin
+          assert_select 'a[href=?]', user_path(user), text: 'Delete'
+        end
+      else
+        assert_select 'a[href=?]', user_path(user), false
       end
     end
 
     assert_difference 'User.count', -1 do
       delete user_path(@non_admin)
+    end
+  end
+
+  test "index as non-admin has no unactivated users" do
+    post_login_path(@non_admin.email)
+    get users_path
+    assert_template 'users/index'
+    assert_select 'div.pagination'
+
+    User.paginate(page: 1).each do |user|
+      if user.activated?
+        assert_select 'a[href=?]', user_path(user), text: user.name
+      else
+        assert_select 'a[href=?]', user_path(user), false
+      end
     end
   end
 
