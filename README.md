@@ -1,4 +1,4 @@
-![CI](https://github.com/agonyawaits/sample-app/workflows/CI/badge.svg)
+![deployment-status](https://github.com/agonyawaits/sample-app/workflows/CI/badge.svg?branch=master&event=deployment) ![deployment](https://github.com/agonyawaits/sample-app/workflows/CI/badge.svg?branch=master&event=deployment) ![build](https://github.com/agonyawaits/sample-app/workflows/CI/badge.svg?branch=master&event=page_build)
 ## Getting started
 
 To get started with the app, clone the repo and then install the needed gems:
