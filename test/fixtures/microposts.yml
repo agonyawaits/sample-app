@@ -1,0 +1,28 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first:
+  content: "first post"
+  created_at: <%= 10.minutes.ago %>
+  user: alice
+
+second:
+  content: "second post"
+  created_at: <%= 2.hours.ago %>
+  user: alice
+
+most_recent:
+  content: "Lorem ipsum"
+  created_at: <%= Time.zone.now %>
+  user: alice
+
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 42.days.ago %>
+  user: alice
+<% end %>
+
+bobs_post:
+  content: "Lorem ipsum"
+  created_at: <%= 42.days.ago %>
+  user: bob
