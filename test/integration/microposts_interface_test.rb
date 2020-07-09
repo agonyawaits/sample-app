@@ -17,11 +17,11 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'div#error_explanation'
 
     content = "Lorem ipsum"
-    image = fixture_file_upload('test/fixtures/kitten.jpg', 'image/jpeg')
+    image = fixture_file_upload('kitten.jpg', 'image/jpeg')
     assert_difference 'Micropost.count', 1 do
       post microposts_path, params: { micropost: { content: content, image: image } }
     end
-    assert @user.microposts.first.image.attached?, 'Image should be attached to micropost'
+    assert assigns(:micropost).image.attached?, 'Image should be attached to micropost'
     assert_redirected_to root_url
     follow_redirect!
     assert_match content, response.body, 'Created post content should be present on a page'
