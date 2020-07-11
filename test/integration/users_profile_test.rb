@@ -13,6 +13,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'title', full_title(@user.name)
     assert_select 'h1', text: @user.name
     assert_select 'h1>img.gravatar' # img tag with class 'gravatar' inside h1
+    assert_select 'section.stats'
     assert_match @user.microposts.count.to_s, response.body, 'The amount of microposts should be diplayed'
     assert_select 'div.pagination'
     @user.microposts.paginate(page: 1).each do |post|
