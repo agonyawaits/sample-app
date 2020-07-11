@@ -33,7 +33,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "email validation should accept valid emails" do
     valid_emails = %w(user@example.com USER@foo.COM A_US-ER@foo.bar.org 
-                      first.last@foo.jp alice+bob@baz.cn)
+                      first.last@foo.jp michael+lana@baz.cn)
     valid_emails.each do |valid_email|
       @user.email = valid_email
       assert @user.valid?, "#{valid_email.inspect} should be valid"
@@ -84,4 +84,19 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  test "should follow and unfollow users" do
+    michael = users(:user_5)
+    lana = users(:user_6)
+
+    lana.follow(michael)
+    assert lana.following?(michael), 'lana should follow michael'
+
+    assert michael.followers.include?(lana)
+
+    lana.unfollow(michael)
+    assert_not lana.following?(michael), 'lana should not follow michael'
+    assert_not michael.following?(lana), 'michael should not follow lana'
+  end
+
 end

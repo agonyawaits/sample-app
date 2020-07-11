@@ -1,0 +1,15 @@
+one:
+  follower: alice
+  followed: bob
+
+two:
+  follower: alice
+  followed: User_1
+
+three:
+  follower: bob
+  followed: alice
+
+four:
+  follower: User_2
+  followed: alice
