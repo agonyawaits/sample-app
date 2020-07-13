@@ -26,3 +26,8 @@ bobs_post:
   content: "Lorem ipsum"
   created_at: <%= 42.days.ago %>
   user: bob
+
+user_1_post:
+  content: "Lorem Ipsum"
+  created_at: <%= Time.zone.now %>
+  user: user_3
