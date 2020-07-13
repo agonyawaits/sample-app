@@ -1,4 +1,4 @@
-![CI](https://github.com/agonyawaits/sample-app/workflows/CI/badge.svg)
+[![build](https://github.com/agonyawaits/sample-app/workflows/CI/badge.svg)](https://github.com/agonyawaits/sample-app/actions?query=workflow%3ACI+branch%3Amaster)
 ## Getting started
 
 To get started with the app, clone the repo and then install the needed gems:
