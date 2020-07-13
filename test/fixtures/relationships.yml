@@ -4,12 +4,16 @@ one:
 
 two:
   follower: alice
-  followed: User_1
+  followed: user_1
 
 three:
   follower: bob
   followed: alice
 
 four:
-  follower: User_2
+  follower: user_2
   followed: alice
+
+five:
+  follower: alice
+  followed: user_3
